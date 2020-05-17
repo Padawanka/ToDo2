@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TaskListService } from '../task-list.service';
+import { TaskData } from '../models/taskData';
 
 @Component({
   selector: 'app-app-root',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app-root.component.css']
 })
 export class AppRootComponent implements OnInit {
+  toDoList: Array<TaskData> = [];
+  counter: number = 0;
 
-  constructor() { }
+  constructor(public taskList: TaskListService) { }
 
   ngOnInit(): void {
+  }
+
+  addTask() {
+    this.taskList.addTask(this.toDoList, this.counter.toString());
+    this.counter += 1;
   }
 
 }
